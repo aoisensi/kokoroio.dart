@@ -1,3 +1,7 @@
+## 0.2.0
+
+- Added `getMemberships`
+
 ## 0.1.1
 
 - Fix library import

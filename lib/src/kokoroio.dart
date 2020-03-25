@@ -4,6 +4,7 @@ import 'dart:core';
 import 'package:http/http.dart' as http;
 
 import 'package:kokoroio/src/models/access_token.dart';
+import 'package:kokoroio/src/models/membership.dart';
 import 'package:kokoroio/src/models/profile.dart';
 
 class KokoroIO {
@@ -23,7 +24,7 @@ class KokoroIO {
       return Future.error(resp.body);
     }
     return (json.decode(resp.body) as List)
-        .map((e) => AccessToken.fromJson(e))
+        .map((e) => AccessToken.fromJson(e as Map<String, dynamic>))
         .toList();
   }
 
@@ -35,7 +36,7 @@ class KokoroIO {
     if (resp.statusCode != 201) {
       return Future.error(resp.body);
     }
-    return AccessToken.fromJson(json.decode(resp.body));
+    return AccessToken.fromJson(json.decode(resp.body) as Map<String, dynamic>);
   }
 
   /// Delete a access_token
@@ -50,6 +51,19 @@ class KokoroIO {
     return;
   }
 
+  /// Returns user's memberships.
+  /// https://kokoro.io/apidoc#!/memberships/getV1Memberships
+  Future<List<Membership>> getMemberships() async {
+    var resp = await http
+        .get(_rootUrl + '/v1/memberships', headers: {'X-Access-Token': _token});
+    if (resp.statusCode != 200) {
+      return Future.error(resp.body);
+    }
+    return (json.decode(resp.body) as List)
+        .map((e) => Membership.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
   /// Returns current logged-in user's profile
   /// https://kokoro.io/apidoc#!/profiles/getV1ProfilesMe
   Future<Profile> getProfilesMe() async {
@@ -58,10 +72,9 @@ class KokoroIO {
     if (resp.statusCode != 200) {
       return Future.error(resp.body);
     }
-    return Profile.fromJson(json.decode(resp.body));
+    return Profile.fromJson(json.decode(resp.body) as Map<String, dynamic>);
   }
 
-  
   /// Returns current logged-in user's profile
   /// https://kokoro.io/apidoc#!/profiles/getV1ProfilesMe
   Future<List<Profile>> getProfiles() async {
@@ -70,6 +83,8 @@ class KokoroIO {
     if (resp.statusCode != 200) {
       return Future.error(resp.body);
     }
-    return (json.decode(resp.body) as List).map((e) => Profile.fromJson(e)).toList();
+    return (json.decode(resp.body) as List)
+        .map((e) => Profile.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 }

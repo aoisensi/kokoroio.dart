@@ -33,7 +33,7 @@ class Profile {
 }
 
 @JsonSerializable()
-class Avatar{
+class Avatar {
   final int size;
   final String url;
   @JsonKey(name: 'is_default')
@@ -45,7 +45,6 @@ class Avatar{
     this.isDefault,
   });
 
-  factory Avatar.fromJson(Map<String, dynamic> json) =>
-      _$AvatarFromJson(json);
+  factory Avatar.fromJson(Map<String, dynamic> json) => _$AvatarFromJson(json);
   Map<String, dynamic> toJson() => _$AvatarToJson(this);
 }

@@ -15,12 +15,17 @@ void main() {
     }
     client = KokoroIO(accessToken: token);
   });
+  
   test('access_tokens', () async {
     var name = 'dart_test_${random()}';
     await client.getAccessTokens();
     var post = await client.postAccessTokens(name);
     expect(post.name, name);
     await client.deleteAccessTokens(post.id);
+  });
+
+  test('memberships', () async {
+    await client.getMemberships();
   });
 
   test('profiles', () async {
