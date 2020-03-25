@@ -5,7 +5,7 @@ part 'channel.g.dart';
 @JsonSerializable()
 class Channel {
   final String id;
-  @JsonKey(name: 'channelName')
+  @JsonKey(name: 'channel_name')
   final String channelName;
   final String kind;
   final bool archived;

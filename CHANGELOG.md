@@ -1,3 +1,7 @@
+## 0.2.1
+
+- fixed typo
+
 ## 0.2.0
 
 - Added `getMemberships`
