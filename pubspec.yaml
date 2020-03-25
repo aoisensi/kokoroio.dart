@@ -1,6 +1,6 @@
 name: kokoroio
 description: kokoro-io REST API client for dart.
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/aoisensi/kokoroio.dart
 
 environment:
