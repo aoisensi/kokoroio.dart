@@ -1,3 +1,7 @@
+## 0.2.2
+
+- added utf8 encoding
+
 ## 0.2.1
 
 - fixed typo

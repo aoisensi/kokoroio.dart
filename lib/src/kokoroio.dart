@@ -21,9 +21,9 @@ class KokoroIO {
     var resp = await http.get(_rootUrl + '/v1/access_tokens',
         headers: {'X-Access-Token': _token});
     if (resp.statusCode != 200) {
-      return Future.error(resp.body);
+      return Future.error(utf8.decode(resp.bodyBytes));
     }
-    return (json.decode(resp.body) as List)
+    return (json.decode(utf8.decode(resp.bodyBytes)) as List)
         .map((e) => AccessToken.fromJson(e as Map<String, dynamic>))
         .toList();
   }
@@ -34,9 +34,10 @@ class KokoroIO {
     var resp = await http.post(_rootUrl + '/v1/access_tokens',
         headers: {'X-Access-Token': _token}, body: {'name': name});
     if (resp.statusCode != 201) {
-      return Future.error(resp.body);
+      return Future.error(utf8.decode(resp.bodyBytes));
     }
-    return AccessToken.fromJson(json.decode(resp.body) as Map<String, dynamic>);
+    return AccessToken.fromJson(
+        json.decode(utf8.decode(resp.bodyBytes)) as Map<String, dynamic>);
   }
 
   /// Delete a access_token
@@ -46,7 +47,7 @@ class KokoroIO {
     var resp = await http.delete(_rootUrl + '/v1/access_tokens/$id',
         headers: {'X-Access-Token': _token});
     if (resp.statusCode != 204) {
-      return Future.error(resp.body);
+      return Future.error(utf8.decode(resp.bodyBytes));
     }
     return;
   }
@@ -57,9 +58,9 @@ class KokoroIO {
     var resp = await http
         .get(_rootUrl + '/v1/memberships', headers: {'X-Access-Token': _token});
     if (resp.statusCode != 200) {
-      return Future.error(resp.body);
+      return Future.error(utf8.decode(resp.bodyBytes));
     }
-    return (json.decode(resp.body) as List)
+    return (json.decode(utf8.decode(resp.bodyBytes)) as List)
         .map((e) => Membership.fromJson(e as Map<String, dynamic>))
         .toList();
   }
@@ -70,9 +71,10 @@ class KokoroIO {
     var resp = await http
         .get(_rootUrl + '/v1/profiles/me', headers: {'X-Access-Token': _token});
     if (resp.statusCode != 200) {
-      return Future.error(resp.body);
+      return Future.error(utf8.decode(resp.bodyBytes));
     }
-    return Profile.fromJson(json.decode(resp.body) as Map<String, dynamic>);
+    return Profile.fromJson(
+        json.decode(utf8.decode(resp.bodyBytes)) as Map<String, dynamic>);
   }
 
   /// Returns current logged-in user's profile
@@ -81,9 +83,9 @@ class KokoroIO {
     var resp = await http
         .get(_rootUrl + '/v1/profiles', headers: {'X-Access-Token': _token});
     if (resp.statusCode != 200) {
-      return Future.error(resp.body);
+      return Future.error(utf8.decode(resp.bodyBytes));
     }
-    return (json.decode(resp.body) as List)
+    return (json.decode(utf8.decode(resp.bodyBytes)) as List)
         .map((e) => Profile.fromJson(e as Map<String, dynamic>))
         .toList();
   }
