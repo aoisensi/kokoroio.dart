@@ -1,3 +1,7 @@
+## 0.3.0
+
+- Added `getChannelsMessages`
+
 ## 0.2.2
 
 - added utf8 encoding

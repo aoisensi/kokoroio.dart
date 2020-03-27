@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:kokoroio/src/models/access_token.dart';
 import 'package:kokoroio/src/models/membership.dart';
+import 'package:kokoroio/src/models/message.dart';
 import 'package:kokoroio/src/models/profile.dart';
 
 class KokoroIO {
@@ -50,6 +51,19 @@ class KokoroIO {
       return Future.error(utf8.decode(resp.bodyBytes));
     }
     return;
+  }
+
+  /// Returns recent messages in the channel.
+  /// https://kokoro.io/apidoc#!/channels/getV1ChannelsChannelIdMessages
+  Future<List<Message>> getChannelsMessages(String channelId) async {
+    var resp = await http.get(_rootUrl + '/v1/channels/$channelId/messages',
+        headers: {'X-Access-Token': _token});
+    if (resp.statusCode != 200) {
+      return Future.error(utf8.decode(resp.bodyBytes));
+    }
+    return (json.decode(utf8.decode(resp.bodyBytes)) as List)
+        .map((e) => Message.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 
   /// Returns user's memberships.

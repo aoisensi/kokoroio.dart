@@ -23,6 +23,11 @@ void main() {
     expect(post.name, name);
     await client.deleteAccessTokens(post.id);
   });
+  
+  test('channels', () async {
+    var channelId = 'JPERDCJ7M';
+    await client.getChannelsMessages(channelId);
+  });
 
   test('memberships', () async {
     await client.getMemberships();
