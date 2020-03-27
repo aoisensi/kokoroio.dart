@@ -1,3 +1,7 @@
+## 0.3.1
+
+- fixed export
+
 ## 0.3.0
 
 - Added `getChannelsMessages`
