@@ -1,3 +1,7 @@
+## 0.4.0
+
+- Added stream
+
 ## 0.3.1
 
 - fixed export

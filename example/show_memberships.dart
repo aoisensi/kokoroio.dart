@@ -5,7 +5,7 @@ import 'package:kokoroio/kokoroio.dart';
 void main() {
   var token = Platform.environment['KOKORO_IO_ACCESS_TOKEN'];
   if (token == null) {
-    throw 'KOKORO_IO_ACCESS_TOKEN is empty!!';
+    throw Exception('KOKORO_IO_ACCESS_TOKEN is empty!!');
   }
   var client = KokoroIO(accessToken: token);
 

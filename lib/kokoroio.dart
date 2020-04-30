@@ -1,6 +1,7 @@
 library kokoroio;
 
 export 'src/kokoroio.dart';
+export 'src/kokoroio_stream.dart';
 
 export 'src/models/access_token.dart';
 export 'src/models/avatar.dart';
